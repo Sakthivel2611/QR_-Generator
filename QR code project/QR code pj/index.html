@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="icon" href="./logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/4bdc095066.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    
+    <header>
+      <img src="./qr.svg" alt="Logo" />
+      <h1>QR Coder</h1>
+    </header>
+    <div class="container">
+      <p>Convert Anything Into QR Code</p>
+      <input type="text" placeholder=" Enter your URl or Text" id="qrText" />
+
+      <div id="imgBox">
+        <img src="" id="qrImage" />
+      </div>
+      <div class="btn">
+        <button onclick="generatorQR()">
+          <i class="fa-solid fa-square-check" style="padding-right: 3px"></i
+          >Generator QR Code
+        </button>
+        <a id="downloadBtn" href="#" download="QRCode.png"
+          ><i class="fa-solid fa-download" style="padding-right: 3px"></i
+          >Download QR Code</a
+        >
+      </div>
+      
+    </div>
+
+    <footer>
+      <p>QR Code Generator &copy; 2024</p>
+      <p>Powered by <a href="https://www.qrserver.com/">QR Server</a></p>
+      <div class="social">
+        <a href="https://github.com/Sakthivel2611" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sakthivel-ramesh-a03b2229b/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </footer>
+
+
+    
+
+    <script>
+      let imgBox = document.getElementById("imgBox");
+      let qrImage = document.getElementById("qrImage");
+      let qrText = document.getElementById("qrText");
+
+      function generatorQR() {
+        if (qrText.value.length > 0) {
+          qrImage.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+            qrText.value;
+          imgBox.classList.add("show-img");
+
+          downloadBtn.href = qrCodeURL;
+          downloadBtn.style.display = "inline-block";
+        } else {
+          qrText.classList.add("error");
+          setTimeout(() => {
+            qrText.classList.remove("error");
+          }, 1000);
+        }
+      }
+    </script>
+
+ 
+    
+  </body>
+</html>
